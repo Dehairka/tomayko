@@ -19,25 +19,29 @@
           </div>
       </div>
       <div class="bottom">
-        <div v-for="(product, index) in 2" :key="index" class="product">
-          <div class="product_picture">
-            <img :src="require('@/assets/img/products/001.png')" alt="image product">
-            <div class="bubble">
-              <span>-20%</span>
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide v-for="(product, index) in 3" :key="index" >
+          <div class="product">
+            <div class="product_picture">
+              <img :src="require('@/assets/img/products/001.png')" alt="image product">
+              <div class="bubble">
+                <span>-20%</span>
+              </div>
+              <div class="favorite">
+                <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
+              </div>
             </div>
-            <div class="favorite">
-              <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
+            <div class="product_info">
+              <span>Dorothy Perkins</span>
+              <h3>Evening Dress</h3>
+              <div class="price">
+                <span><strike>15€</strike></span>
+                <span class="price">12€</span>
+              </div>
             </div>
           </div>
-          <div class="product_info">
-            <span>Dorothy Perkins</span>
-            <h3>Evening Dress</h3>
-            <div class="price">
-              <span><strike>15€</strike></span>
-              <span class="price">12€</span>
-            </div>
-          </div>
-        </div>
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
      <div class="homePage_sale">
@@ -51,25 +55,29 @@
           </div>
       </div>
       <div class="bottom">
-        <div v-for="(product, index) in 2" :key="index" class="product">
-          <div class="product_picture">
-            <img :src="require('@/assets/img/products/001.png')" alt="image product">
-            <div class="bubble">
-              <span>-20%</span>
+        <swiper ref="mySwiper" :options="swiperOptions">
+          <swiper-slide v-for="(product, index) in 3" :key="index" >
+          <div class="product">
+            <div class="product_picture">
+              <img :src="require('@/assets/img/products/001.png')" alt="image product">
+              <div class="bubble">
+                <span>-20%</span>
+              </div>
+              <div class="favorite">
+                <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
+              </div>
             </div>
-            <div class="favorite">
-              <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
+            <div class="product_info">
+              <span>Dorothy Perkins</span>
+              <h3>Evening Dress</h3>
+              <div class="price">
+                <span><strike>15€</strike></span>
+                <span class="price">12€</span>
+              </div>
             </div>
           </div>
-          <div class="product_info">
-            <span>Dorothy Perkins</span>
-            <h3>Evening Dress</h3>
-            <div class="price">
-              <span><strike>15€</strike></span>
-              <span class="price">12€</span>
-            </div>
-          </div>
-        </div>
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
   </div>
@@ -77,7 +85,25 @@
 
 <script>
 export default {
-  transition: 'home'
+  transition: 'home',
+  data() {
+      return {
+        swiperOptions: {
+          slidesPerView: 2.2,
+          spaceBetween: 1,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          // Some Swiper option/callback...
+        }
+      }
+    },
+    computed: {
+      swiper() {
+        return this.$refs.mySwiper.$swiper
+      }
+    }
 }
 </script>
 
@@ -126,9 +152,11 @@ export default {
         }
         &_picture{
           position: relative;
+          width: 40vw;
           img{
             border-radius: 16px;
             width: 100%;
+            max-height: 50vh;
           }          
           .bubble{
             position: absolute;
