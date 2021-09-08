@@ -18,6 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  // loading: '~/components/loading.vue',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -38,9 +39,12 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/device',
   ],
-    styleResources: {
-      scss: './assets/scss/*.scss'
-    },
+  styleResources: {
+    scss: './assets/scss/*.scss'
+  },
+  eslint: {
+    fix: true
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

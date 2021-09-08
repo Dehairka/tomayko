@@ -1,5 +1,6 @@
 <template>
   <div class="layoutDefault">
+      <!-- <Loading /> -->
       <nav v-if="$device.isMobile" class="layoutDefault_navMobile">
           <ul>
               <li class="active">
@@ -8,7 +9,7 @@
               </li>
               <li>
                   <img :src="require('@/assets/icons/shop.svg')" alt="icon nav mobile">
-                  <span><NuxtLink to="/shop">Shop</NuxtLink></span>
+                  <span><NuxtLink to="/categories">Shop</NuxtLink></span>
               </li>
               <li>
                   <img :src="require('@/assets/icons/bag.svg')" alt="icon nav mobile">
@@ -36,12 +37,14 @@
               oui
           </div>
       </nav>
-      <Nuxt />
+      <Nuxt  />
   </div>
 </template>
 
 <script>
-export default {}
+
+export default {
+}
 </script>
 
 <style lang="scss">

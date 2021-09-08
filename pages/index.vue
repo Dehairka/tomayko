@@ -19,8 +19,8 @@
           </div>
       </div>
       <div class="bottom">
-        <swiper ref="mySwiper" :options="swiperOptions">
-          <swiper-slide v-for="(product, index) in 3" :key="index" >
+        <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
+          <swiper-slide v-for="(product, index) in 10" :key="index" >
           <div class="product">
             <div class="product_picture">
               <img :src="require('@/assets/img/products/001.png')" alt="image product">
@@ -55,8 +55,8 @@
           </div>
       </div>
       <div class="bottom">
-        <swiper ref="mySwiper" :options="swiperOptions">
-          <swiper-slide v-for="(product, index) in 3" :key="index" >
+        <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
+          <swiper-slide v-for="(product, index) in 10" :key="index" >
           <div class="product">
             <div class="product_picture">
               <img :src="require('@/assets/img/products/001.png')" alt="image product">
@@ -85,12 +85,19 @@
 
 <script>
 export default {
-  transition: 'home',
+  // transition: 'home',
   data() {
       return {
         swiperOptions: {
           slidesPerView: 2.2,
-          spaceBetween: 1,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          // Some Swiper option/callback...
+        },
+        swiperOptionsDesktop: {
+          slidesPerView: 4,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
@@ -119,6 +126,9 @@ export default {
       width: 100vw;
       height: 70vh;
       object-fit: cover;
+      @include tablet-portrait-up {  
+        object-position: 0 20%;
+      }
     }
     .content{
       position: absolute;
@@ -127,11 +137,19 @@ export default {
       color: white;
       font-size: 1.6em;
       font-weight: 600;
+      @include tablet-portrait-up {  
+        left: 19%;
+        bottom: 20%;
+      }
     }
   }
   &_sale{
     padding: 16px;
     background-color: $black;
+    @include tablet-portrait-up {  
+        width: 60%;  
+        margin: auto;
+      }
     .top{
       display: flex;
       justify-content: space-between;
@@ -146,17 +164,18 @@ export default {
       align-items: center;
       padding-top: 16px;
       .product{
-        width: 40%;
-        @include tablet-portrait-up {    
-            width: 20%;
-        }
+        width: 80%;
         &_picture{
           position: relative;
-          width: 40vw;
+          
           img{
             border-radius: 16px;
             width: 100%;
             max-height: 50vh;
+                @include tablet-portrait-up {  
+                  max-height: inherit;
+                  
+                }
           }          
           .bubble{
             position: absolute;

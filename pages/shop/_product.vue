@@ -1,6 +1,6 @@
 <template>
-  <div class="shopPage">
-    <h1>Shop</h1>
+  <div class="productPage">
+    
   </div>
 </template>
 
@@ -11,8 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.shopPage{
-    background-color: $black;
-    width: 100%;
+.productPage{
+    
 }
 </style>
