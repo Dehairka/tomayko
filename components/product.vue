@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :class="displayHorizontal ? 'product--horizontal' : 'product'" @click="changePage('/shop/'+product.id)">
+  <div :class="displayHorizontal ? 'product--horizontal' : 'product'" @click="changePage('/shop/'+data.product)">
             <div :class="displayHorizontal ? 'product_picture--horizontal' : 'product_picture'">
               <img v-if="data.img" :class="displayHorizontal ? 'productPicture--horizontal' : 'productPicture'" :src="'http://esteve.xyz:1337' + data.img[0].url" alt="image product">
               <div :class="displayHorizontal ? 'bubble--horizontal' : 'bubble'">

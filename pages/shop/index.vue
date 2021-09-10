@@ -50,7 +50,7 @@ export default {
   async asyncData({ $strapi, store, error }) {
     try {
       // const response = await $strapi.$products.find('category.name='+category)
-      const response = await $strapi.$categories.find('name='+store.state.categoryActuel)
+      const response = await $strapi.$categories.find([['name', store.state.categoryActuel]])
       store.commit('setCategory', response)
     } catch (e) {
       error(e)

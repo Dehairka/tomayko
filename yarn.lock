@@ -1501,6 +1501,11 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.20.tgz#111b5db0f501aa89b05076fa31f0ea0e0c292cd3"
   integrity sha512-88p7+M0QGxKpmnkfXjS4V26AnoC/eiqZutE8GLdaI5X12NY75bXSdTY9NkmYb2Xyk1O+MmkuO6Frmsj84V6I8Q==
 
+"@stripe/stripe-js@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.17.1.tgz#afcb7e86d0b05d1a7af53af89111abd2e8d437ae"
+  integrity sha512-c9MyDvdi5Xou0j0JPNy86NebtTDfh9o62Ifuzx6GSm2YO0oedBpy51WSyOue2L8Fb+mqESS5gd6mGVEIPUnXsA==
+
 "@types/anymatch@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-3.0.0.tgz#c95ff14401dbb2869913afac3935af4ad0d37f1a"
@@ -1725,6 +1730,11 @@
   version "12.20.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.12.tgz#fd9c1c2cfab536a2383ed1ef70f94adea743a226"
   integrity sha512-KQZ1al2hKOONAs2MFv+yTQP1LkDWMrRJ9YCVRalXltOfXsBmH5IownLxQaiq0lnAHwAViLnh2aTYqrPcRGEbgg==
+
+"@types/node@>=8.1.0":
+  version "16.9.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.1.tgz#0611b37db4246c937feef529ddcc018cf8e35708"
+  integrity sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -8529,7 +8539,7 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qs@^6.5.2, qs@^6.9.4:
+qs@^6.5.2, qs@^6.6.0, qs@^6.9.4:
   version "6.10.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
   integrity sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==
@@ -9760,6 +9770,14 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+stripe@^8.174.0:
+  version "8.174.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.174.0.tgz#91d2e61b0217b1ee9fde2842582e0f1cf1dddc94"
+  integrity sha512-UFU5TuYH7XwUmSllUIcIKhhsvvhhjw9D6ZwVdfB74wU4VOOaWBiQqszkw6chaEFpdulUmbcAH5eZltV3HwOi7g==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.6.0"
 
 style-resources-loader@^1.4.1:
   version "1.4.1"

@@ -5,7 +5,7 @@
       <div class="content">
         <h1>New</h1>
         <h1>collection !</h1>
-        <input class="btn" type="button" value="Discover">
+        <input class="btn" type="button" value="Discover" @click="changePage('/categories')">
       </div>
     </div>
     <div class="homePage_sale">
@@ -33,7 +33,7 @@
           <span>You've never seen it before!</span>
         </div>
           <div class="right">
-            <NuxtLink to="/">View all</NuxtLink>
+            <NuxtLink to="/categories">View all</NuxtLink>
           </div>
       </div>
       <div class="bottom">
