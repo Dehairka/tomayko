@@ -18,7 +18,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  // loading: '~/components/loading.vue',
+  loading: '~/components/loading.vue',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -26,7 +26,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    './plugins/swiper.js'
+    './plugins/swiper.js',
+    './plugins/commerce.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,7 +53,13 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/strapi',
   ],
+
+  strapi: {
+    entities: ['products', 'categories'],
+  },
+
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

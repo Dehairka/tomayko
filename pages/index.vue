@@ -20,10 +20,10 @@
       </div>
       <div class="bottom">
         <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
-          <swiper-slide v-for="(product, index) in 10" :key="index" >
-          <div class="product">
+          <swiper-slide v-for="(product, index) in products" :key="index" >
+          <div class="product" @click="changePage('/shop/'+product.id)">
             <div class="product_picture">
-              <img :src="require('@/assets/img/products/001.png')" alt="image product">
+              <img class="productPicture" :src="product.media.source" alt="image product">
               <div class="bubble">
                 <span>-20%</span>
               </div>
@@ -32,11 +32,11 @@
               </div>
             </div>
             <div class="product_info">
-              <span>Dorothy Perkins</span>
-              <h3>Evening Dress</h3>
+              <span v-html="product.description"></span>
+              <h3>{{product.name}}</h3>
               <div class="price">
-                <span><strike>15€</strike></span>
-                <span class="price">12€</span>
+                <span><strike>{{ product.price.raw * 20 / 100 + product.price.raw }}€</strike></span>
+                <span class="price">{{product.price.raw}}€</span>
               </div>
             </div>
           </div>
@@ -56,10 +56,10 @@
       </div>
       <div class="bottom">
         <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
-          <swiper-slide v-for="(product, index) in 10" :key="index" >
-          <div class="product">
+          <swiper-slide v-for="(product, index) in products" :key="index" >
+          <div class="product" @click="changePage('/shop/'+product.id)">
             <div class="product_picture">
-              <img :src="require('@/assets/img/products/001.png')" alt="image product">
+              <img class="productPicture" :src="product.media.source" alt="image product">
               <div class="bubble">
                 <span>-20%</span>
               </div>
@@ -68,11 +68,11 @@
               </div>
             </div>
             <div class="product_info">
-              <span>Dorothy Perkins</span>
-              <h3>Evening Dress</h3>
+              <span v-html="product.description"></span>
+              <h3>{{product.name}}</h3>
               <div class="price">
-                <span><strike>15€</strike></span>
-                <span class="price">12€</span>
+                <span><strike>{{ product.price.raw * 20 / 100 + product.price.raw }}€</strike></span>
+                <span class="price">{{product.price.raw}}€</span>
               </div>
             </div>
           </div>
@@ -84,7 +84,15 @@
 </template>
 
 <script>
+
 export default {
+    async asyncData({ $commerce}) {
+      const { data: products } = await $commerce.products.list();
+
+      return {
+        products,
+      };
+    },
   // transition: 'home',
   data() {
       return {
@@ -109,6 +117,11 @@ export default {
     computed: {
       swiper() {
         return this.$refs.mySwiper.$swiper
+      }
+    },
+    methods:{
+      changePage(url) {
+        this.$router.push({ path: url })
       }
     }
 }
@@ -168,10 +181,12 @@ export default {
         &_picture{
           position: relative;
           
-          img{
+          .productPicture{
             border-radius: 16px;
             width: 100%;
+            background-color: white;
             max-height: 50vh;
+            min-height: 170px;
                 @include tablet-portrait-up {  
                   max-height: inherit;
                   

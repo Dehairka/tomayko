@@ -1,13 +1,21 @@
 <template>
-  <div class="productPage">
-    
+  <div>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.price.formatted_with_symbol }}</p>
   </div>
 </template>
 
 <script>
+
 export default {
-    transition: 'home'
-}
+  async asyncData({ params, $commerce }) {
+    const product = await $commerce.products.retrieve(params.product)
+
+    return {
+      product,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,21 +1,21 @@
 <template>
   <div class="categoriesPage">
-    <div class="categoriesPage_herobanner" @click="changePage('/shop')">
+    <div class="categoriesPage_herobanner" @click="changePage('/shop', 'New Collection')">
       <div class="shadow"></div>
       <img :src="require('@/assets/img/shop/001.png')" alt="category image">
-      <h1>New collection</h1>
+      <h1>New Collection</h1>
     </div>
     <div class="categoriesPage_categories">
       <div class="left">
-        <div class="left_top">
+        <div class="left_top" @click="changePage('/shop', 'New Collection')">
           <h1>Summer <br>sale</h1>
         </div>
-        <div class="left_bottom">
+        <div class="left_bottom" @click="changePage('/shop', 'TShirts')">
           <img :src="require('@/assets/img/shop/002.png')" alt="category image">
           <h1>Black</h1>
         </div>
       </div>
-      <div class="right">
+      <div class="right" @click="changePage('/shop', 'Sweats')">
         <img :src="require('@/assets/img/shop/003.png')" alt="category image">
         <h1>Men's <br>hats</h1>
       </div>
@@ -24,13 +24,15 @@
 </template>
 
 <script>
+
 export default {
     transition: 'home',
     methods:{
-      changePage(url) {
+      changePage(url, category) {
+        this.$store.commit('setCategoryActuel', category)
         this.$router.push({ path: url })
       }
-    }
+    },
 }
 </script>
 

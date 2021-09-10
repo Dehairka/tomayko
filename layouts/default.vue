@@ -95,7 +95,7 @@ html{
     font-family: 'Lato', sans-serif;
     color: white;
     @include tablet-portrait-up {    
-        padding-top: 50px;
+        padding-top: 70px;
     };
     @include phone {    
         padding-bottom: 70px;
