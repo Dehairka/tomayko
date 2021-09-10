@@ -1,5 +1,14 @@
 # Tomayko
 
+## TODO
+- Système de connexion
+- Système de favories
+- Ajouter Stripe
+- Barre de recherche
+- Améliorer le Responsive Desktop
+- Faire les pages profiles
+- Sûrement d'autres trucs
+
 ## Build Setup
 
 ```bash
