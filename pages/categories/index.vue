@@ -12,12 +12,12 @@
         </div>
         <div class="left_bottom" @click="changePage('/shop', 'TShirts')">
           <img :src="require('@/assets/img/shop/002.png')" alt="category image">
-          <h1>Black</h1>
+          <h1>TShirts</h1>
         </div>
       </div>
       <div class="right" @click="changePage('/shop', 'Sweats')">
         <img :src="require('@/assets/img/shop/003.png')" alt="category image">
-        <h1>Men's <br>hats</h1>
+        <h1>Sweats</h1>
       </div>
     </div>
   </div>

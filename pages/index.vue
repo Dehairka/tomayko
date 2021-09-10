@@ -11,35 +11,17 @@
     <div class="homePage_sale">
       <div class="top">
         <div class="left">
-          <h2>Sale</h2>
+          <h2>Sweats</h2>
           <span>You've never seen it before!</span>
         </div>
           <div class="right">
-            <NuxtLink to="/">View all</NuxtLink>
+            <NuxtLink to="/shop">View all</NuxtLink>
           </div>
       </div>
       <div class="bottom">
         <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
-          <swiper-slide v-for="(product, index) in products" :key="index" >
-          <div class="product" @click="changePage('/shop/'+product.id)">
-            <div class="product_picture">
-              <img class="productPicture" :src="product.media.source" alt="image product">
-              <div class="bubble">
-                <span>-20%</span>
-              </div>
-              <div class="favorite">
-                <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
-              </div>
-            </div>
-            <div class="product_info">
-              <span v-html="product.description"></span>
-              <h3>{{product.name}}</h3>
-              <div class="price">
-                <span><strike>{{ product.price.raw * 20 / 100 + product.price.raw }}€</strike></span>
-                <span class="price">{{product.price.raw}}€</span>
-              </div>
-            </div>
-          </div>
+          <swiper-slide v-for="(product, index) in saleHome[0].products.slice(0,4)" :key="index" >
+            <Product :display-horizontal="false" :data="product" />
           </swiper-slide>
         </swiper>
       </div>
@@ -56,26 +38,8 @@
       </div>
       <div class="bottom">
         <swiper ref="mySwiper" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
-          <swiper-slide v-for="(product, index) in products" :key="index" >
-          <div class="product" @click="changePage('/shop/'+product.id)">
-            <div class="product_picture">
-              <img class="productPicture" :src="product.media.source" alt="image product">
-              <div class="bubble">
-                <span>-20%</span>
-              </div>
-              <div class="favorite">
-                <img :src="require('@/assets/icons/heart.svg')" alt="heart icon">
-              </div>
-            </div>
-            <div class="product_info">
-              <span v-html="product.description"></span>
-              <h3>{{product.name}}</h3>
-              <div class="price">
-                <span><strike>{{ product.price.raw * 20 / 100 + product.price.raw }}€</strike></span>
-                <span class="price">{{product.price.raw}}€</span>
-              </div>
-            </div>
-          </div>
+          <swiper-slide v-for="(product, index) in newHome" :key="index" >
+            <Product :display-horizontal="false" :data="product" />
           </swiper-slide>
         </swiper>
       </div>
@@ -84,15 +48,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
-    async asyncData({ $commerce}) {
-      const { data: products } = await $commerce.products.list();
-
-      return {
-        products,
-      };
-    },
+    async asyncData({ $strapi, store, error }) {
+    try {
+      // const response = await $strapi.$products.find('category.name='+category)
+      const response = await $strapi.$categories.find('name=Sweats')
+      store.commit('setSaleHome', response)
+      const newHome = await $strapi.$products.find()
+      store.commit('setNewHome', newHome.slice(0,4))
+    } catch (e) {
+      error(e)
+    }
+  },
   // transition: 'home',
   data() {
       return {
@@ -117,7 +86,8 @@ export default {
     computed: {
       swiper() {
         return this.$refs.mySwiper.$swiper
-      }
+      },
+      ...mapState(['saleHome', 'newHome'])
     },
     methods:{
       changePage(url) {
