@@ -23,7 +23,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis placeat temporibus. Quasi sit doloremque culpa vitae error debitis, incidunt, perferendis porro quod, neque placeat soluta vel deserunt esse aliquam!</p>
       </div>
     </div>
-    <input class="btn" type="button" value="Add to cart" @click="addItemToCart(product)">
+    <input class="btn addToCart" type="button" value="Add to cart" @click="addItemToCart(product)">
     <div class="divider"></div>
   </div>
 </template>
@@ -43,11 +43,9 @@ export default {
           this.$router.push({ path: url })
       },
       addItemToCart(product){
-        console.log('product', product[0]);
         const newProduct = product[0]
         newProduct.quantity = 1;
         this.$store.dispatch('addItemToCart', newProduct)
-        console.log('successfully added to cart')
       }
   }
 };
@@ -55,16 +53,43 @@ export default {
 
 <style lang="scss" scoped>
 .productPage{
+  width: 100%;
+  padding-bottom: 32px;
+  text-align: center;
   &_nav{
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    text-align: left;
   }
   &_herobanner{
     width: 100%;
     img{
       width: 100vw;
     }
+  }
+  &_info{
+    padding: 16px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    .left{
+      padding-bottom: 16px;
+    }
+    .right{
+      padding-bottom: 16px;
+      font-weight: 600;
+      font-size: 2em;
+    }
+    .bottom{
+      width: 100%;
+    }
+  }
+  .addToCart{
+    width: 80%;
+    margin: auto;
   }
     
 }

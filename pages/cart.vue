@@ -59,6 +59,12 @@ export default {
       stripePromise: {},
     }
   },
+  computed: {
+    ...mapGetters(['getCart', 'getCartTotal']),
+  },
+  mounted() {
+    this.displayMessage()
+  },
 
 methods: {
     async handleSubmit(e) {
@@ -70,7 +76,7 @@ methods: {
           cartTotal: this.getCartTotal.toFixed(2),
         }
       )
-      console.log('Please wait...')
+    //   console.log('Please wait...')
       // stripe logic
       const stripePromise = loadStripe(
        'pk_test_51JY8tdH80gByby7vYCS7aRY5Bf0caoRQcAHFi8ehFz4ThYilYNmY4DJMg2o8pNAP88cg2F2GH3vwkfNyfff1b66m00tmY18ikY'
@@ -80,7 +86,7 @@ methods: {
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       })
-      console.log(response)
+    //   console.log(response)
       if (result.error) {
         this.$nuxt.context.error(result.error.message)
       }
@@ -88,9 +94,9 @@ methods: {
     // using vue-swal to display messages
     displayMessage() {
       if (this.$route.query.success) {
-        console.log('Order placed !')
+        // console.log('Order placed !')
       } else if (this.$route.query.canceled) {
-        console.log('Order canceled !')
+        // console.log('Order canceled !')
       }
     },
     formatCartTotal(num) {
@@ -101,13 +107,7 @@ methods: {
       }
     },
     ...mapActions(['deleteCartItem']),
-  },
-  computed: {
-    ...mapGetters(['getCart', 'getCartTotal']),
-  },
-  mounted() {
-    this.displayMessage()
-  },
+  }
 }
 </script>
 <style scoped></style>
