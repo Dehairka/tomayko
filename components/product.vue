@@ -1,24 +1,24 @@
 <template lang="html">
   <div :class="displayHorizontal ? 'product--horizontal' : 'product'" >
-            <div :class="displayHorizontal ? 'product_picture--horizontal' : 'product_picture'">
-              <img v-if="data.img" :class="displayHorizontal ? 'productPicture--horizontal' : 'productPicture'" :src="'http://esteve.xyz:1337' + data.img[0].url" alt="image product" @click="changePage('/shop/'+data.product)">
-              <div v-if="data.promo" :class="displayHorizontal ? 'bubble--horizontal' : 'bubble'" @click="changePage('/shop/'+data.product)">
-                <span >{{ (data.price - data.promo) / data.promo * 100 }}%</span>
-              </div>
-              <div :class="displayHorizontal ? 'favorite--horizontal' : 'favorite'" @click="addItemToFavorites(data)">
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15.079 27L13.1826 25.2736C6.44687 19.1657 2 15.1373 2 10.1935C2 6.16512 5.16512 3 9.19346 3C11.4692 3 13.6534 4.0594 15.079 5.73351C16.5046 4.0594 18.6888 3 20.9646 3C24.9929 3 28.158 6.16512 28.158 10.1935C28.158 15.1373 23.7112 19.1657 16.9755 25.2866L15.079 27Z" stroke="#ABB4BD"/>
-                </svg>
-              </div>
-            </div>
-            <div :class="displayHorizontal ? 'product_info--horizontal' : 'product_info'" @click="changePage('/shop/'+data.product)">
-              <span>{{ data.description }}</span>
-              <h3>{{ data.name }}</h3>
-              <div class="price">
-                <span v-if="data.promo"><strike>{{data.promo}}€</strike></span>
-                <span class="price">{{ data.price }}€</span>
-              </div>
-            </div>
+							<div :class="displayHorizontal ? 'product_picture--horizontal' : 'product_picture'">
+									<img v-if="data.img" :class="displayHorizontal ? 'productPicture--horizontal' : 'productPicture'" :src="'http://esteve.xyz:1337' + data.img[0].url" alt="image product" @click="changePage('/shop/'+data.product)">
+									<div v-if="data.promo" :class="displayHorizontal ? 'bubble--horizontal' : 'bubble'" @click="changePage('/shop/'+data.product)">
+											<span >{{ (data.price - data.promo) / data.promo * 100 }}%</span>
+									</div>
+									<div :class="{ 'favorite': !displayHorizontal, 'favorite--horizontal': displayHorizontal, 'favorited': data.favorited}" @click="addFavorite(data)">
+											<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M15.079 27L13.1826 25.2736C6.44687 19.1657 2 15.1373 2 10.1935C2 6.16512 5.16512 3 9.19346 3C11.4692 3 13.6534 4.0594 15.079 5.73351C16.5046 4.0594 18.6888 3 20.9646 3C24.9929 3 28.158 6.16512 28.158 10.1935C28.158 15.1373 23.7112 19.1657 16.9755 25.2866L15.079 27Z" stroke="#ABB4BD"/>
+											</svg>
+									</div>
+							</div>
+							<div :class="displayHorizontal ? 'product_info--horizontal' : 'product_info'" @click="changePage('/shop/'+data.product)">
+									<span>{{ data.description }}</span>
+									<h3>{{ data.name }}</h3>
+									<div class="price">
+											<span v-if="data.promo"><strike>{{data.promo}}€</strike></span>
+											<span class="price">{{ data.price }}€</span>
+									</div>
+							</div>
       </div>
     </div>
 </template>
@@ -39,6 +39,9 @@ import { mapActions } from 'vuex'
         changePage(url) {
             this.$router.push({ path: url })
         },
+        addFavorite(product) {
+          this.addItemToFavorites(product);
+        },
         ...mapActions(['addItemToFavorites']),
     }
   }
@@ -49,6 +52,8 @@ import { mapActions } from 'vuex'
   svg, svg path{
     color: $primary;
     fill: $primary;
+    border: none;
+    stroke: none;
   }
 }
   .product{
