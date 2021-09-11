@@ -1,7 +1,7 @@
 <template>
   <div class="productPage">
     <nav class="productPage_nav">
-      <img :src="require('@/assets/icons/left.svg')" alt="left chevron" class="chevron" @click="changePage('/shop')">
+      <img :src="require('@/assets/icons/left.svg')" alt="left chevron" class="chevron" @click="changePage()">
       <h2>{{ product[0].name }}</h2>
       <img :src="require('@/assets/icons/search.svg')" alt="search icon">
     </nav>
@@ -39,8 +39,8 @@ export default {
     };
   },
   methods: {
-      changePage(url) {
-          this.$router.push({ path: url })
+      changePage() {
+          this.$router.go(-1);
       },
       addItemToCart(product){
         const newProduct = product[0]

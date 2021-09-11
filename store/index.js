@@ -9,11 +9,13 @@ export const state = () => ({
   menProducts: [],
   womenProducts: [],
   cartItems: [],
+  favorites: []
 })
 export const getters = {
   /* 
     return items from store
   */
+  favorites: (state) => state.favorites,
   allProducts: (state) => state.allProducts,
   featuredProducts: (state) => state.featuredProducts,
   menProducts: (state) => state.menProducts,
@@ -25,6 +27,13 @@ export const getters = {
       : state.cartItems
           .map((el) => el.price * el.quantity)
           .reduce((a, b) => a + b),
+  isAuthenticated(state) {
+    return state.auth.loggedIn;
+  },
+    
+  loggedInUser(state) {
+    return state.auth.user;
+  },
 }
 export const actions = {
   async addItemToCart({ commit }, cartItem) {
@@ -32,6 +41,9 @@ export const actions = {
   },
   async deleteCartItem({ commit }, id) {
     await commit('removeCartItem', id)
+  },
+  async addItemToFavorites({ commit }, cartItem) {
+    await commit('setFavorites', cartItem)
   },
 }
 export const mutations = {
@@ -46,6 +58,7 @@ export const mutations = {
   setMenProducts: (state, products) => (state.menProducts = products),
   setWomenProducts: (state, products) => (state.womenProducts = products),
   setCartItem: (state, item) => state.cartItems.push(item),
+  setFavorites: (state, item) => state.favorites.push(item),
   removeCartItem: (state, id) =>
     state.cartItems.splice(
       state.cartItems.findIndex((el) => el.id === id),

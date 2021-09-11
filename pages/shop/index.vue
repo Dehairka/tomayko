@@ -27,7 +27,7 @@
         <img :src="require('@/assets/icons/filters.svg')" alt="Filter icon">
         <span>Filters</span>
       </li>
-      <li>
+      <li @click="orderedByPrice = !orderedByPrice">
         <img :src="require('@/assets/icons/arrows.svg')" alt="Filter icon">
         <span>Price: lowest to high</span>
       </li>
@@ -35,8 +35,11 @@
         <img :src="require(displayHorizontal ? '@/assets/icons/grid.svg' : '@/assets/icons/grid_2.svg')" alt="Filter icon">
       </li>
     </ul>
-    <div v-if="category[0].products" class="products">
+    <div v-if="category[0].products && !orderedByPrice" class="products">
       <Product v-for="(product, index) in category[0].products" :key="index" :data="product" :display-horizontal="displayHorizontal"/>
+    </div>
+    <div v-if="category[0].products && orderedByPrice" class="products">
+      <Product v-for="(product, index) in orderByPrice" :key="index" :data="product" :display-horizontal="displayHorizontal"/>
     </div>
     <p v-else>No products</p>
   </div>
@@ -44,6 +47,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import _ from 'lodash'
 
 export default {
   transition: 'home',
@@ -75,11 +79,15 @@ export default {
         },
         // Some Swiper option/callback...
       },
-      displayHorizontal: false
+      displayHorizontal: false,
+      orderedByPrice: false
     }
   },
   computed: {
-      ...mapState(['category'])
+      ...mapState(['category']),
+      orderByPrice () {
+        return _.orderBy(this.category[0].products, 'price')
+      }
   },
   methods: {
       changePage(url) {
