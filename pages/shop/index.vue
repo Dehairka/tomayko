@@ -1,10 +1,6 @@
 <template>
   <div class="shopPage">
-    <nav class="shopPage_nav">
-      <img :src="require('@/assets/icons/left.svg')" alt="left chevron" class="chevron" @click="changePage('/categories')">
-      <h2>{{ category[0].name }}</h2>
-      <img :src="require('@/assets/icons/search.svg')" alt="search icon">
-    </nav>
+    <Nav :title="category[0].name" />
     <swiper ref="mySwiper" class="filters" :options="$device.isMobile ? swiperOptions : swiperOptionsDesktop">
           <swiper-slide class="filter" >
               <span>T-Shirt</span>
@@ -27,9 +23,9 @@
         <img :src="require('@/assets/icons/filters.svg')" alt="Filter icon">
         <span>Filters</span>
       </li>
-      <li @click="orderedByPrice = !orderedByPrice">
+      <li class="pointer" @click="orderedByPrice = !orderedByPrice">
         <img :src="require('@/assets/icons/arrows.svg')" alt="Filter icon">
-        <span>Price: lowest to high</span>
+        <span>Price: {{ orderedByPrice ? 'default' : 'lowest to high' }}</span>
       </li>
       <li @click="displayHorizontal = !displayHorizontal">
         <img :src="require(displayHorizontal ? '@/assets/icons/grid.svg' : '@/assets/icons/grid_2.svg')" alt="Filter icon">
@@ -41,7 +37,7 @@
     <div v-if="category[0].products && orderedByPrice" class="products">
       <Product v-for="(product, index) in orderByPrice" :key="index" :data="product" :display-horizontal="displayHorizontal"/>
     </div>
-    <p v-else>No products</p>
+    <p v-if="category[0].products.length == 0" class="noProducts">No products</p>
   </div>
 </template>
 
@@ -100,9 +96,13 @@ export default {
 <style lang="scss" scoped>
 .shopPage{
     @include tablet-portrait-up {    
-        width: 60%;
+        width: 70%;
         margin: auto;
     };
+    .noProducts{
+      text-align: center;
+      margin: 32px;
+    }
     &_nav{
       display: flex;
       justify-content: space-between;

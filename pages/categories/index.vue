@@ -1,11 +1,11 @@
 <template>
   <div class="categoriesPage">
-    <div class="categoriesPage_herobanner" @click="changePage('/shop', 'New Collection')">
+    <div class="categoriesPage_herobanner pointer" @click="changePage('/shop', 'New Collection')">
       <div class="shadow"></div>
       <img :src="require('@/assets/img/shop/001.png')" alt="category image">
       <h1>New Collection</h1>
     </div>
-    <div class="categoriesPage_categories">
+    <div class="categoriesPage_categories pointer">
       <div class="left">
         <div class="left_top" @click="changePage('/shop', 'New Collection')">
           <h1>Summer <br>sale</h1>

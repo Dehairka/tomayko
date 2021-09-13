@@ -1,10 +1,6 @@
 <template>
   <div class="productPage">
-    <nav class="productPage_nav">
-      <img :src="require('@/assets/icons/left.svg')" alt="left chevron" class="chevron" @click="changePage()">
-      <h2>{{ product[0].name }}</h2>
-      <img :src="require('@/assets/icons/search.svg')" alt="search icon">
-    </nav>
+    <Nav :title="product[0].name"/>
     <div class="productPage_herobanner">
       <img :src="'http://esteve.xyz:1337'+product[0].img[0].url" alt="">
     </div>

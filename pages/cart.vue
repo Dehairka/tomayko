@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="w-4/5 sm:w-1/2 mx-auto">
-      <h1 class="m-5 font-bold text-lg">Your Cart</h1>
-    </div>
+    <Nav title="Cart" />
     <div
       v-for="item in getCart"
       :key="item.id"
@@ -12,15 +10,9 @@
         <img class="h-24" :src="`http://esteve.xyz:1337${item.img[0].url}`" alt="" />
       </div>
       <div>
-        <p>
-          {{ item.name }}
-        </p>
-        <p>
-          {{ item.quantity | formatQuantity }}
-        </p>
-        <button class="button--delete" @click="deleteCartItem(item.id)">
-          Delete
-        </button>
+        <p>{{ item.name }}</p>
+        <p>{{ item.quantity | formatQuantity }}</p>
+        <button class="button--delete" @click="deleteCartItem(item.id)">Delete</button>
       </div>
     </div>
     <div class="w-4/5 sm:w-1/2 mb-2 mx-auto">
@@ -31,9 +23,7 @@
         v-show="getCartTotal > 0"
         class="button--green mx-auto"
         @click="handleSubmit"
-      >
-        checkout
-      </button>
+      >checkout</button>
     </div>
   </div>
 </template>

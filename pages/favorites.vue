@@ -1,5 +1,6 @@
 <template>
   <div class="favoritesPage">
+    <Nav title="Favorites" />
     <div v-if="favorites.length > 0" class="favoritesPage_content">
       <Product v-for="(product, index) in favorites" :key="index" :data="product" :display-horizontal="true"/>
     </div>
@@ -29,6 +30,7 @@ export default {
 <style lang="scss" scoped>
 .favoritesPage{
   width: 95vw;
+  padding-top: 16px;
 
   &_content{
     padding: 16px;

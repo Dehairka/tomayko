@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :class="displayHorizontal ? 'product--horizontal' : 'product'" >
+  <div :class="displayHorizontal ? 'product--horizontal' : 'product'" class="pointer">
 							<div :class="displayHorizontal ? 'product_picture--horizontal' : 'product_picture'">
 									<img v-if="data.img" :class="displayHorizontal ? 'productPicture--horizontal' : 'productPicture'" :src="'http://esteve.xyz:1337' + data.img[0].url" alt="image product" @click="changePage('/shop/'+data.product)">
 									<div v-if="data.promo" :class="displayHorizontal ? 'bubble--horizontal' : 'bubble'" @click="changePage('/shop/'+data.product)">
@@ -68,9 +68,9 @@ import { mapActions } from 'vuex'
           .productPicture{
             border-radius: 16px;
             width: 100%;
+            height: 260px;
+            object-fit: cover;
             background-color: white;
-            max-height: 50vh;
-            min-height: 170px;
                 @include tablet-portrait-up {  
                   max-height: inherit;
                   

@@ -5,4 +5,11 @@
     border: 2px solid $primary;
     width: 50%;
     border-radius: 100px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.btn:hover{
+    background-color: white;
+    color: $primary;
+    border: 2px solid $primary;
 }

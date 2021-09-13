@@ -74,7 +74,7 @@ export default {
           // Some Swiper option/callback...
         },
         swiperOptionsDesktop: {
-          slidesPerView: 4,
+          slidesPerView: 3.2,
           pagination: {
             el: '.swiper-pagination',
             clickable: true

@@ -48,14 +48,16 @@
           <div class="divider"></div>
       </nav>
       <nav v-else class="layoutDefault_navDesktop">
-          <div class="menu">
-              <img width="30px" :src="require('@/assets/icons/menu.svg')" alt="menu icon">
-          </div>
-          <div class="logo">
-              <h1>Tomayko</h1>
-          </div>
-          <div class="account">
-                <img width="30px" :src="require('@/assets/icons/user.svg')" alt="menu icon">
+          <div class="content">
+            <div class="menu">
+                <img width="30px" :src="require('@/assets/icons/menu.svg')" alt="menu icon">
+            </div>
+            <div class="logo">
+                <NuxtLink to="/">Tomayko</NuxtLink>
+            </div>
+            <div class="account">
+                    <img width="30px" :src="require('@/assets/icons/user.svg')" alt="menu icon">
+            </div>
           </div>
       </nav>
       <Nuxt  />
@@ -79,6 +81,9 @@ html{
 }
 ::selection{
     background-color: $primary;
+}
+.pointer{
+    cursor: pointer;
 }
 
 .home-enter-active { 
@@ -198,18 +203,33 @@ a.nuxt-link-exact-active {
 
     &_navDesktop{
         background-color: $black;
-        display: flex;
-        justify-content: space-between;
+        
         height: 50px;
-        align-items: center;
-        padding: 16px;
         position: fixed;
         top: 0;
-        width: 97vw;
         z-index: 55;
+				width: 100%;
         margin: 0;
         color: $primary;
+        .content{
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					padding: 16px;
+					width: 80%;
+					margin: auto;
+        }
 
+        .logo{
+            font-size: 2em;
+            color: $primary;
+            a{
+                color: $primary;
+            }
+            a:hover{
+                color: white;
+            }
+        }
 
     }
 }
